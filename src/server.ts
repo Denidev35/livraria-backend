@@ -11,6 +11,7 @@ const app = Fastify({ logger: true });
 
 app.register(fastifyCors, {
   origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE']
 });
 
 // Registra o plugin de JWT
