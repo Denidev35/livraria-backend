@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import bcrypt from 'bcryptjs';
 import { z } from 'zod';
-import { prisma } from 'prisma/client';
+import { prisma } from '../prisma/client';
 
 const userSchema = z.object({
   email: z.string().email(),
