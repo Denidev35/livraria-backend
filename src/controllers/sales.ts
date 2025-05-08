@@ -1,4 +1,4 @@
-import { FastifyInstance, type FastifyReply, type FastifyRequest } from 'fastify';
+import { type FastifyReply, type FastifyRequest } from 'fastify';
 import { z } from 'zod';
 import { prisma } from '../prisma/client';
 
