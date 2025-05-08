@@ -1,11 +1,13 @@
 import Fastify from "fastify";
 import fastifyJwt from "@fastify/jwt";
+import 'dotenv/config';
 
 import userRoutes from './routes/users';
 import authRoutes from './routes/auth';
 import bookRoutes from './routes/books';
 import salesRoutes from './routes/sales';
 import fastifyCors from '@fastify/cors';
+
 
 const app = Fastify({ logger: true });
 
@@ -16,7 +18,7 @@ app.register(fastifyCors, {
 
 // Registra o plugin de JWT
 app.register(fastifyJwt, {
-  secret: 'seuSegredoJWTseguro'
+  secret: process.env.JWT_SECRET || 'secret',
 });
 
 // Agora, registre suas rotas

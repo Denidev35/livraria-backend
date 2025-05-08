@@ -3,7 +3,6 @@ import { createUser, getMe, listUsers } from '../controllers/users';
 import { verifyJWT } from 'middlewares/verify-jwt';
 
 export default async function (fastify: FastifyInstance) {
-  fastify.addHook('onRequest', verifyJWT);
 
   fastify.post('/', createUser);
   fastify.get('/', listUsers);

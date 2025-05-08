@@ -87,6 +87,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -118,6 +121,11 @@ exports.Prisma.SaleScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 
@@ -164,17 +172,17 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "file:./dev.db"
+        "value": "postgresql://postgress_api_livraria_user:E3jbcavxVCplge4sTKpkHVzUzF83KFGG@dpg-d0edmgmuk2gs73fcpmqg-a.oregon-postgres.render.com/postgress_api_livraria"
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Book {\n  id     String @id @default(cuid())\n  title  String\n  author String\n  isbn   String @unique\n  price  Float\n  stock  Int\n  Sale   Sale[]\n}\n\nmodel User {\n  id       String @id @default(cuid())\n  name     String\n  email    String @unique\n  password String\n  Sale     Sale[]\n}\n\nmodel Sale {\n  id       String   @id @default(cuid())\n  date     DateTime @default(now())\n  userId   String\n  bookId   String\n  quantity Int\n  total    Float\n  user     User     @relation(fields: [userId], references: [id])\n  book     Book     @relation(fields: [bookId], references: [id])\n}\n",
-  "inlineSchemaHash": "1615994be805756da9d0dc9e9a5c362f560ff4ffdab69ce8d941621612bc8daf",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Book {\n  id     String @id @default(cuid())\n  title  String\n  author String\n  isbn   String @unique\n  price  Float\n  stock  Int\n  Sale   Sale[]\n}\n\nmodel User {\n  id       String @id @default(cuid())\n  name     String\n  email    String @unique\n  password String\n  Sale     Sale[]\n}\n\nmodel Sale {\n  id       String   @id @default(cuid())\n  date     DateTime @default(now())\n  userId   String\n  bookId   String\n  quantity Int\n  total    Float\n  user     User     @relation(fields: [userId], references: [id])\n  book     Book     @relation(fields: [bookId], references: [id])\n}\n",
+  "inlineSchemaHash": "071947ea6fa0a3aee2c929718da2a5e40b5ab219a7423069667fcff71744fa79",
   "copyEngine": true
 }
 
