@@ -172,11 +172,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgress_api_livraria_user:E3jbcavxVCplge4sTKpkHVzUzF83KFGG@dpg-d0edmgmuk2gs73fcpmqg-a.oregon-postgres.render.com/postgress_api_livraria"
+        "value": null
       }
     }
   },
