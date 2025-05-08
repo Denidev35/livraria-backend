@@ -8,7 +8,7 @@ exports.listUsers = listUsers;
 exports.getMe = getMe;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const zod_1 = require("zod");
-const client_1 = require("prisma/client");
+const client_1 = require("../prisma/client");
 const userSchema = zod_1.z.object({
     email: zod_1.z.string().email(),
     password: zod_1.z.string().min(6),
