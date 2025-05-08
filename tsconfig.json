@@ -5,10 +5,9 @@
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
     "outDir": "dist",
-    "rootDir": "src",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "resolveJsonModule": true
   },
   "include": [
     "src"
